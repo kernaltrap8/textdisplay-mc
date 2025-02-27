@@ -29,22 +29,24 @@ public class TextDisplayClient implements ClientModInitializer {
 	public String TextDisplayLogPrefix = "[§dTD§f]";
 	public String TextDisplayLogError = "§c";
 	public String TextDisplayLogResetColor = "§f";
-	public String commandPostfix = "textdisplay";
-	public String commandSetText = "settext";
+	public String commandPostfix = "td";
+	public String commandSetText = "text";
 	public String messageSetText = TextDisplayLogPrefix + " " + "Set display text to: ";
 	public String commandRgb = "rgb";
-	public String messageRgbEnabled = TextDisplayLogPrefix + "Enabled rainbow text!";
-	public String messageRgbDisabled = TextDisplayLogPrefix + "Disabled rainbow text!";
+	public String messageRgbEnabled = TextDisplayLogPrefix + " " + "Enabled rainbow text!";
+	public String messageRgbDisabled = TextDisplayLogPrefix + " " + "Disabled rainbow text!";
 	public String commandColor = "color";
-	public String messageColor = TextDisplayLogPrefix + "Set custom color to #";
+	public String messageColor = TextDisplayLogPrefix + " " + "Set custom color to #";
 	public String messageColorInvalid = TextDisplayLogPrefix + " " + TextDisplayLogError + "Invalid hex color!" + TextDisplayLogResetColor;
 	public String commandPadding = "padding";
-	public String messagePadding = TextDisplayLogPrefix + "Set padding to " + padding + " pixels!";
+	public String messagePadding = TextDisplayLogPrefix + " " + "Set padding to ";
 	public String commandShadow = "shadow";
-	public String messageShadowOn = TextDisplayLogPrefix + "Enabled text shadow!";
-	public String messageShadowOff = TextDisplayLogPrefix + "Disable text shadow!";
+	public String messageShadowOn = TextDisplayLogPrefix + " " + "Enabled text shadow!";
+	public String messageShadowOff = TextDisplayLogPrefix + " " + "Disabled text shadow!";
 	public String commandReset = "reset";
-	public String messageReset = TextDisplayLogPrefix + "Reset all settings to default!";
+	public String messageReset = TextDisplayLogPrefix + " " + "Reset all settings to default!";
+	public String commandPosition = "position";
+	public String messagePosition = TextDisplayLogPrefix + "Text position set to: ";
 	public String textPosition = "bottom_right"; // Default position
 
 	@Override
@@ -163,7 +165,7 @@ public class TextDisplayClient implements ClientModInitializer {
 							.then(argument("pixels", IntegerArgumentType.integer(0))
 									.executes(context -> {
 										INSTANCE.padding = IntegerArgumentType.getInteger(context, "pixels");
-										context.getSource().sendFeedback(Text.literal(messagePadding));
+										context.getSource().sendFeedback(Text.literal(messagePadding + padding + " " + "pixels!"));
 										return 1;
 									}))
 					)
@@ -186,18 +188,18 @@ public class TextDisplayClient implements ClientModInitializer {
 						INSTANCE.padding = 10;
 						INSTANCE.text = "";
 						INSTANCE.useShadow = true;
-						INSTANCE.textPosition = "bottom_right"; // Reset position to default
+						INSTANCE.textPosition = "bottom_right";
 						context.getSource().sendFeedback(Text.literal(messageReset));
 						return 1;
 					}))
-					.then(literal("setposition")
+					.then(literal(commandPosition)
 							.then(argument("position", StringArgumentType.word())
 									.executes(context -> {
 										String position = StringArgumentType.getString(context, "position");
 										if (position.equals("top_left") || position.equals("top_right") || position.equals("bottom_left")
 												|| position.equals("bottom_right") || position.equals("top_center") || position.equals("bottom_center")) {
 											INSTANCE.textPosition = position;
-											context.getSource().sendFeedback(Text.literal("Text position set to: " + position));
+											context.getSource().sendFeedback(Text.literal(messagePosition + position));
 										} else {
 											context.getSource().sendError(Text.literal("Invalid position! Valid options: top_left, top_right, bottom_left, bottom_right, top_center, bottom_center"));
 										}
