@@ -1,3 +1,7 @@
+// TextDisplay.java - Initializer
+// TextDisplay-MC Copyright 2024 (c) kernaltrap8
+// Licensed under BSD-3
+
 package kernaltrap.textdisplay;
 
 import net.fabricmc.api.ModInitializer;
@@ -19,6 +23,7 @@ public class TextDisplay implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("TextDisplayClient initialized.");
+
 	}
 }

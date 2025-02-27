@@ -3,15 +3,15 @@
 	"id": "text-display",
 	"version": "${version}",
 	"name": "Text Display",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Simple Minecraft mod that displays text on the screen.",
 	"authors": [
-		"Me!"
+		"kernaltrap"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/kernaltrap8",
+		"sources": "https://github.com/kernaltrap8/textdisplay-mc"
 	},
-	"license": "CC0-1.0",
+	"license": "BSD-3",
 	"icon": "assets/text-display/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -34,8 +34,5 @@
 		"minecraft": "~1.20.4",
 		"java": ">=17",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
